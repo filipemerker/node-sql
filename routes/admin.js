@@ -1,18 +1,8 @@
-const path = require('path')
 const router = require('express').Router()
-const paths = require('../util/paths')
+const productController = require('../controllers/product')
 
-const products = [];
+router.get('/add-product', productController.new)
 
-router.get('/add-product', (req, res) => {
-  res.render('add-product', { pageTitle: 'Add Product', path: '/admin/add-product' })
-})
+router.post('/add-product', productController.add)
 
-router.post('/add-product', (req, res) => {
-  products.push({ title: req.body.title })
-
-  res.redirect('/')
-})
-
-exports.routes = router
-exports.products = products
+module.exports = router
