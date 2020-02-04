@@ -1,11 +1,15 @@
 const Product = require('../models/Product')
 
-exports.add = (req, res) => {
-  const { title = '', description = '' } = req.body
-  const product = new Product({ title, description })
+exports.add = async (req, res) => {
+  try {
+    const { title = '', description = '' } = req.body
+    const product = new Product({ title, description })
 
-  product.save()
-  res.redirect('/')
+    await product.save()
+    res.redirect('/')
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 exports.new = (req, res) => {

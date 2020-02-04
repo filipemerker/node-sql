@@ -7,7 +7,6 @@ exports.get404 = (req, res) => {
 exports.getHome = async (req, res) => {
   try {
     const prods = await Product.fetchAll()
-    console.log(prods)
 
     res.render('shop', { prods, pageTitle: 'Shop', path: '/' })
   } catch(err) {
